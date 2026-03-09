@@ -1,0 +1,77 @@
+@startuml
+class Main {
+  + main(args: String[]) : void
+}
+
+class GestorEmpleados {
+  - plantilla : Plantilla
+  - consola : IConsola
+  + GestorEmpleados(plantilla: Plantilla, consola: IConsola)
+  + ejecutar() : void
+  - contratarEmpleado() : void
+  - listarTodos() : void
+  - listarPorFiltro() : void
+}
+
+interface IConsola {
+  + imprimir(texto: String) : void
+  + imprimirLinea(texto: String) : void
+  + leerTexto(mensaje: String) : String
+  + leerEntero(mensaje: String) : int
+}
+
+class Consola {
+  - sc : Scanner
+  + Consola()
+  + imprimir(texto: String) : void
+  + imprimirLinea(texto: String) : void
+  + leerTexto(mensaje: String) : String
+  + leerEntero(mensaje: String) : int
+}
+
+class Plantilla {
+  - empleados : List<Empleado>
+  + Plantilla()
+  + contratarEmpleado(empleado: Empleado) : void
+  + getEmpleadosPorNombre(filtroNombre: String) : List<Empleado>
+}
+
+abstract class Empleado {
+  - dni : String
+  - nombre : String
+  - apellidos : String
+  - sueldoBase : double
+  + Empleado(dni: String, nombre: String, apellidos: String, sueldoBase: double)
+  + getDni() : String
+  + getNombre() : String
+  + getApellidos() : String
+  + getSueldoBase() : double
+  + setSueldoBase(sueldoBase: double) : void
+  + getSueldo() : double {abstract}
+}
+
+class Tecnico {
+  - categoria : int
+  + Tecnico(dni: String, nombre: String, apellidos: String, sueldoBase: double, categoria: int)
+  + getSueldo() : double
+}
+
+class Comercial {
+  - ventas : double
+  + Comercial(dni: String, nombre: String, apellidos: String, sueldoBase: double)
+  + setVentas(ventas: double) : void
+  + getSueldo() : double
+}
+
+Main --> GestorEmpleados
+Main --> Plantilla
+Main --> Consola
+
+GestorEmpleados --> Plantilla
+GestorEmpleados --> IConsola
+Consola ..|> IConsola
+
+Plantilla "1" o-- "*" Empleado
+Empleado <|-- Tecnico
+Empleado <|-- Comercial
+@enduml
