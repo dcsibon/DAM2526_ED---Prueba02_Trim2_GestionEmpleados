@@ -6,7 +6,7 @@
 
 ---
 
-# 1. Objetivo
+## 1. Objetivo
 
 Se desea desarrollar un programa en **Java** que permita gestionar la **plantilla de empleados de una empresa**.
 
@@ -19,13 +19,15 @@ El sueldo de cada tipo de empleado se calculará de forma distinta.
 
 La estructura del programa está descrita en el **diagrama UML proporcionado**, el cual debes respetar.
 
-<img width="2000" height="1426" alt="image" src="https://github.com/user-attachments/assets/4d38c6b6-d0bd-4586-8f82-92fe98095c03" />
+<image src="/assets/DAM2526_ED_Prueba02_Trim2.jpg" alt="Diagrama de clases">
+
+* También en PDF: [Diagrama de clases en PDF](DAM2526_ED_Prueba02_Trim2.pdf)
 
 * La clase `Empleado` es **abstracta** y el método `getSueldo()` también es **abstracto**.
 
 ---
 
-# 2. Reglas de cálculo del sueldo
+## 2. Reglas de cálculo del sueldo
 
 ### Técnicos
 
@@ -39,7 +41,7 @@ El sueldo se calculará como su sueldo base más el 10% de las ventas realizadas
 
 ---
 
-# 3. Clase Plantilla
+## 3. Clase Plantilla
 
 En la clase `Plantilla`:
 
@@ -65,7 +67,7 @@ contenga el texto pasado como parámetro.
 
 ---
 
-# 4. Gestión mediante menú
+## 4. Gestión mediante menú
 
 El programa se ejecutará mediante un menú:
 
@@ -80,7 +82,7 @@ El programa deberá ejecutarse en un bucle hasta seleccionar **Salir**.
 
 ---
 
-## Opción 1 – Contratar empleado
+### Opción 1 – Contratar empleado
 
 Se preguntará el tipo de empleado:
 
@@ -93,7 +95,7 @@ Después se solicitarán los datos necesarios para crear el empleado.
 
 ---
 
-## Opción 2 – Listar todos
+### Opción 2 – Listar todos
 
 Debe mostrar todos los empleados **ordenados por nombre**.
 
@@ -105,13 +107,13 @@ N - Nombre Apellidos: Sueldo €
 
 ---
 
-## Opción 3 – Listar con filtro
+### Opción 3 – Listar con filtro
 
 Se pedirá un texto y se mostrarán los empleados cuyo nombre o apellidos contengan dicho texto.
 
 ---
 
-# 5. Ordenación de la lista
+## 5. Ordenación de la lista
 
 Antes de mostrar los empleados, la lista debe estar **ordenada por nombre**.
 
@@ -135,7 +137,7 @@ La ordenación debe hacerse **en el lugar donde se muestran los datos**.
 
 ---
 
-# 6. Comprobación del funcionamiento
+## 6. Comprobación del funcionamiento
 
 Para comprobar que el programa funciona correctamente, introduce los siguientes empleados:
 
@@ -145,7 +147,7 @@ Para comprobar que el programa funciona correctamente, introduce los siguientes 
 Nombre: Pablo
 Apellidos: Bicicletas
 DNI: 11111111H
-Sueldo base: 1000
+Sueldo base: 1000.75
 Categoría: 1
 ```
 
@@ -157,7 +159,7 @@ Categoría: 1
 Nombre: Omar
 Apellidos: Mediterraneo
 DNI: 22222222J
-Sueldo base: 1000
+Sueldo base: 1000,99
 Categoría: 2
 ```
 
@@ -175,20 +177,80 @@ Ventas: 6000
 
 ---
 
-# Resultado esperado al listar todos
+### Resultado esperado al listar todos
 
 ```
 1 - Luna Rota: 1400 €
-2 - Pablo Bicicletas: 1100 €
-3 - Omar Mediterraneo: 1200 €
+2 - Pablo Bicicletas: 1100,75 €
+3 - Omar Mediterraneo: 1200,99 €
 ```
 
 ---
 
-# Resultado esperado al filtrar por "ta"
+### Resultado esperado al filtrar por "ta"
 
 ```
 1 - Luna Rota: 1400 €
-2 - Pablo Bicicletas: 1100 €
+2 - Pablo Bicicletas: 1100,75 €
 ```
+---
 
+## 7. Aclaraciones sobre algunos métodos a desarrollar
+
+### Métodos de `GestorEmpleados`
+
+#### ejecutar()
+
+Ejecuta el menú principal de la aplicación. Muestra las distintas opciones disponibles y procesa la acción seleccionada por el usuario. El programa se mantiene en ejecución hasta que el usuario elige la opción de salir.
+
+#### contratarEmpleado()
+
+Permite crear y contratar un nuevo empleado. Solicita al usuario el tipo de empleado (técnico o comercial) y los datos necesarios para construir el objeto correspondiente. Finalmente añade el empleado a la plantilla.
+
+#### ordenarPorNombre(List<Empleado>)
+
+Ordena una lista de empleados alfabéticamente según su nombre.
+
+#### listarEmpleados(List<Empleado>)
+
+Muestra por pantalla una lista de empleados. Antes de mostrarlos, la lista se ordena por nombre. Cada empleado se muestra numerado y con el formato: N - Nombre Apellidos: Sueldo €. Usa `ordenarPorNombre`.
+
+#### listarTodos()
+
+Obtiene todos los empleados de la plantilla y los muestra. Usa `plantilla.getEmpleadosPorNombre` y `listarEmpleados`.
+
+#### listarPorFiltro()
+
+Solicita al usuario un texto de filtro, obtiene los empleados según dicho filtro y los muestra. Usa `plantilla.getEmpleadosPorNombre` y `listarEmpleados`.
+
+---
+
+### Métodos de `Plantilla`
+
+#### getEmpleadosPorNombre(String filtroNombre)
+
+Devuelve una `nueva` lista de empleados cuyo nombre o apellidos contienen el texto indicado. La búsqueda ignora mayúsculas y minúsculas. Si el filtro está vacío, se devuelven todos los empleados.
+
+---
+
+### Métodos de `Consola`
+
+#### leerEntero(String mensaje)
+
+Muestra un mensaje por pantalla solicitando al usuario un número entero y lee la entrada desde teclado. Si el valor introducido no es un entero válido, captura la excepción y muestra un mensaje de error, repitiendo la petición hasta que el usuario introduce un número correcto.
+
+#### leerImporte(String mensaje)
+
+Solicita al usuario un importe numérico mostrando previamente un mensaje. Lee el valor introducido por teclado y lo convierte a tipo double, permitiendo tanto coma como punto como separador decimal. Si el formato no es válido, muestra un mensaje de error y vuelve a pedir el dato hasta que el usuario introduce un importe correcto.
+
+#### mostrarMenu()
+
+Muestra por pantalla el menú principal de la aplicación con las diferentes opciones disponibles para el usuario, como contratar un empleado, listar empleados, aplicar filtros o salir del programa.
+
+#### limpiarPantalla()
+
+Simula la limpieza de la consola imprimiendo múltiples líneas en blanco *(50)*. Esto desplaza el contenido anterior hacia arriba para que la pantalla quede visualmente más limpia antes de mostrar nueva información. Se utiliza en el bucle del método `ejecutar` de `GestorEmpleados`.
+
+#### pausa()
+
+Muestra un mensaje "Pulse una tecla para continuar..." y detiene temporalmente la ejecución del programa hasta que el usuario pulsa una tecla. Se utiliza para que el usuario pueda leer la información mostrada en pantalla antes de continuar con la ejecución del programa. Se utiliza en el bucle del método `ejecutar` de `GestorEmpleados`.
