@@ -19,9 +19,9 @@ El sueldo de cada tipo de empleado se calculará de forma distinta.
 
 La estructura del programa está descrita en el **diagrama UML proporcionado**, el cual debes respetar.
 
-<image src="/assets/DAM2526_ED_Prueba02_Trim2-2.jpg" alt="Diagrama de clases">
+<image src="/assets/DAM2526_ED_Prueba02_Trim2-3.jpg" alt="Diagrama de clases">
 
-* También en PDF: [Diagrama de clases en PDF](DAM2526_ED_Prueba02_Trim2-2.pdf)
+* También en PDF: [Diagrama de clases en PDF](DAM2526_ED_Prueba02_Trim2-3.pdf)
 
 * La clase `Empleado` es **abstracta** y el método `getSueldo()` también es **abstracto**.
 
