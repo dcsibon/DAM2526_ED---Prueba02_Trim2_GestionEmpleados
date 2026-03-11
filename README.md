@@ -181,8 +181,8 @@ Ventas: 6000
 
 ```
 1 - Luna Rota: 1400 €
-2 - Pablo Bicicletas: 1100,75 €
-3 - Omar Mediterraneo: 1200,99 €
+2 - Omar Mediterraneo: 1200,99 €
+3 - Pablo Bicicletas: 1100,75 €
 ```
 
 ---
